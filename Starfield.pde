@@ -1,4 +1,5 @@
 Particle[] bob = new Particle[1000];
+boolean change = false;
 
 void setup()
 {
@@ -26,9 +27,9 @@ void draw()
 	{
 		bob[i].show();
 
-		if(dist((float) bob[i].myX, (float) bob[i].myY, 200, 200) > 50 && dist((float) bob[i].myX, (float) bob[i].myY, 200, 200) < 100) 
+		if(dist((float) bob[i].myX, (float) bob[i].myY, 200, 200) > 50) 
 		{
-			bob[i].mySize += 0.1;
+			bob[i].mySize += 0.05;
 		}
 
 	}
@@ -49,6 +50,14 @@ void mousePressed()
 		}
 	}
 
+	if(change == false)
+	{
+		change = true;
+	}
+	else 
+	{
+		change = false;	
+	}
 }
 
 class Particle
@@ -60,17 +69,27 @@ class Particle
 	{
 		myX = myY = 200;
 		myAngle = Math.random() * (2 * PI);
-		mySpeed = Math.random() * 8;
-		//myColor = color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
+		mySpeed = Math.random() * 8 + 0.5;
 		mySize = 1;
 	}
 
 	void show()
 	{
-		noStroke();
-		fill(255);
-		ellipse((float) myX, (float) myY, mySize, mySize);
-		move();
+
+		if(change == false)
+		{
+			noStroke();
+			fill(255);
+			ellipse((float) myX, (float) myY, mySize, mySize);
+			move();
+		}
+		else 
+		{
+			stroke(255);
+			line((float) myX, (float) myY, (float) (myX + Math.cos(myAngle) * 10), (float) (myY + Math.sin(myAngle) * 10));
+			move();
+		}
+		
 	}
 
 	void move()
@@ -92,10 +111,20 @@ class OddballParticle extends Particle
 
 	void show()
 	{
-		stroke(135, 206, 250);
-		strokeWeight(0.5);
-		line((float) myX, (float) myY, (float) (myX + Math.cos(myAngle) * 10), (float) (myY + Math.sin(myAngle) * 10));
-		move();
+		if(change == false)
+		{
+			stroke(130, 200, 200);
+			line((float) myX, (float) myY, (float) (myX + Math.cos(myAngle) * 10), (float) (myY + Math.sin(myAngle) * 10));
+			move();
+		}
+		else 
+		{
+			noStroke();
+			fill(130, 200, 200);
+			ellipse((float) myX, (float) myY, mySize, mySize);
+			move();
+		}
+		
 	}
 
 	void move()
