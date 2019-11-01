@@ -3,6 +3,7 @@ boolean change = false;
 
 void setup()
 {
+	
 	size(400, 400);
 	frameRate(30);
 
@@ -26,18 +27,21 @@ void draw()
 
 	for(int i = 0; i < bob.length; i++)
 	{
+
 		bob[i].show();
 
 		if(dist((float) bob[i].myX, (float) bob[i].myY, 200, 200) > 50) 
 		{
 			bob[i].mySize += 0.05;
 		}
+
 	}
 
 }
 
 void mousePressed()
 {
+
 	for(int i = 0; i < bob.length; i++)
 	{
 		if(i % 2 == 0)
@@ -58,6 +62,7 @@ void mousePressed()
 	{
 		change = false;	
 	}
+
 }
 
 class Particle
@@ -67,10 +72,12 @@ class Particle
 
 	Particle()
 	{
+
 		myX = myY = 200;
 		myAngle = Math.random() * (2 * PI);
 		mySpeed = Math.random() * 8 + 0.5;
 		mySize = 1;
+
 	}
 
 	void show()
@@ -94,8 +101,10 @@ class Particle
 
 	void move()
 	{
+
 		myX += Math.cos(myAngle) * mySpeed;
 		myY += Math.sin(myAngle) * mySpeed;
+
 	}
 
 }
@@ -106,7 +115,9 @@ class OddballParticle extends Particle
 
 	OddballParticle()
 	{
+
 		speed = (int)(Math.random() * 8) + 1;
+
 	}
 
 	void show()
@@ -124,11 +135,14 @@ class OddballParticle extends Particle
 			ellipse((float) myX, (float) myY, mySize, mySize);
 			move();
 		}
+
 	}
 
 	void move()
 	{
+
 		myX += Math.cos(myAngle) * speed;
 		myY += Math.sin(myAngle) * speed;
+
 	}
 }
