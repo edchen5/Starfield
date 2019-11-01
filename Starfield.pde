@@ -23,6 +23,7 @@ void setup()
 void draw()
 {
 	background(0);
+
 	for(int i = 0; i < bob.length; i++)
 	{
 		bob[i].show();
@@ -31,7 +32,6 @@ void draw()
 		{
 			bob[i].mySize += 0.05;
 		}
-
 	}
 
 }
@@ -124,7 +124,6 @@ class OddballParticle extends Particle
 			ellipse((float) myX, (float) myY, mySize, mySize);
 			move();
 		}
-		
 	}
 
 	void move()
@@ -132,7 +131,4 @@ class OddballParticle extends Particle
 		myX += Math.cos(myAngle) * speed;
 		myY += Math.sin(myAngle) * speed;
 	}
-
 }
-
-
