@@ -111,13 +111,10 @@ class Particle
 
 class OddballParticle extends Particle
 {
-	int speed;
-
+	
 	OddballParticle()
 	{
-
-		speed = (int)(Math.random() * 8) + 1;
-
+		mySpeed = (int)(Math.random() * 8) + 1;
 	}
 
 	void show()
@@ -141,8 +138,9 @@ class OddballParticle extends Particle
 	void move()
 	{
 
-		myX += Math.cos(myAngle) * speed;
-		myY += Math.sin(myAngle) * speed;
+		myX += Math.cos(myAngle) * mySpeed;
+		myY += Math.sin(myAngle) * mySpeed;
 
 	}
+
 }
